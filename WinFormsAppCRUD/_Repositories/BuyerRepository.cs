@@ -33,6 +33,7 @@ namespace WinFormsAppCRUD._Repositories
             }
         }
 
+
         public void Delete(int id)
         {
             using (var connection = new SqlConnection(connectionString))
@@ -90,6 +91,35 @@ namespace WinFormsAppCRUD._Repositories
             }
             return buyerList;
         }
+
+        //public IEnumerable<BuyerModel> GetAll()
+        //{
+        //    var buyerList = new List<BuyerModel>();
+        //    var getallttask = new Task(async () => {
+        //        using (var connection = new SqlConnection(connectionString))
+        //        using (var command = new SqlCommand())
+        //        {
+        //            await connection.OpenAsync();
+        //            command.Connection = connection;
+        //            command.CommandText = "Select *from Buyer order by ID_Buyer desc";
+        //            using (var reader = command.ExecuteReader())
+        //            {
+        //                while (await reader.ReadAsync())
+        //                {
+        //                    var buyerModel = new BuyerModel();
+        //                    buyerModel.ID = (int)reader[0];
+        //                    buyerModel.Login = reader[1].ToString();
+        //                    buyerModel.Password = reader[2].ToString();
+        //                    buyerModel.Phone_Number = reader[3].ToString();
+        //                    buyerModel.Adress = reader[4].ToString();
+        //                    buyerList.Add(buyerModel);
+        //                }
+        //            }
+        //        }
+        //    });
+        //    getallttask.RunSynchronously();
+        //    return buyerList;
+        //}
 
         public IEnumerable<BuyerModel> GetByValue(string value)
         {
