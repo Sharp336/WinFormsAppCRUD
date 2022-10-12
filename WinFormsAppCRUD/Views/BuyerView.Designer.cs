@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageBuyerList = new System.Windows.Forms.TabPage();
+            this.txtBuyerCount = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAddNew = new System.Windows.Forms.Button();
@@ -53,6 +55,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtBuyerId = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageBuyerList.SuspendLayout();
@@ -79,13 +82,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1068, 63);
+            this.panel1.Size = new System.Drawing.Size(1101, 63);
             this.panel1.TabIndex = 1;
             // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(1016, 12);
+            this.btnClose.Location = new System.Drawing.Point(1049, 12);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(37, 30);
             this.btnClose.TabIndex = 9;
@@ -100,11 +103,12 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 63);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1068, 470);
+            this.tabControl1.Size = new System.Drawing.Size(1101, 463);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPageBuyerList
             // 
+            this.tabPageBuyerList.Controls.Add(this.txtBuyerCount);
             this.tabPageBuyerList.Controls.Add(this.btnDelete);
             this.tabPageBuyerList.Controls.Add(this.btnEdit);
             this.tabPageBuyerList.Controls.Add(this.btnAddNew);
@@ -115,15 +119,27 @@
             this.tabPageBuyerList.Location = new System.Drawing.Point(4, 30);
             this.tabPageBuyerList.Name = "tabPageBuyerList";
             this.tabPageBuyerList.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageBuyerList.Size = new System.Drawing.Size(1060, 436);
+            this.tabPageBuyerList.Size = new System.Drawing.Size(1093, 429);
             this.tabPageBuyerList.TabIndex = 0;
             this.tabPageBuyerList.Text = "Buyer list";
             this.tabPageBuyerList.UseVisualStyleBackColor = true;
             // 
+            // txtBuyerCount
+            // 
+            this.txtBuyerCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBuyerCount.Location = new System.Drawing.Point(935, 246);
+            this.txtBuyerCount.Multiline = true;
+            this.txtBuyerCount.Name = "txtBuyerCount";
+            this.txtBuyerCount.ReadOnly = true;
+            this.txtBuyerCount.Size = new System.Drawing.Size(111, 72);
+            this.txtBuyerCount.TabIndex = 13;
+            this.txtBuyerCount.Text = "Всего покупателей: 0";
+            this.txtBuyerCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(914, 192);
+            this.btnDelete.Location = new System.Drawing.Point(947, 192);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(99, 30);
             this.btnDelete.TabIndex = 12;
@@ -133,7 +149,7 @@
             // btnEdit
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.Location = new System.Drawing.Point(914, 144);
+            this.btnEdit.Location = new System.Drawing.Point(947, 144);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(99, 30);
             this.btnEdit.TabIndex = 11;
@@ -143,7 +159,7 @@
             // btnAddNew
             // 
             this.btnAddNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddNew.Location = new System.Drawing.Point(914, 92);
+            this.btnAddNew.Location = new System.Drawing.Point(947, 92);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(99, 30);
             this.btnAddNew.TabIndex = 10;
@@ -162,13 +178,13 @@
             this.dataGridView.Location = new System.Drawing.Point(29, 80);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(792, 284);
+            this.dataGridView.Size = new System.Drawing.Size(825, 277);
             this.dataGridView.TabIndex = 9;
             // 
             // btnSearch
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(914, 36);
+            this.btnSearch.Location = new System.Drawing.Point(947, 36);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(99, 30);
             this.btnSearch.TabIndex = 8;
@@ -181,7 +197,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Location = new System.Drawing.Point(29, 36);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(792, 29);
+            this.txtSearch.Size = new System.Drawing.Size(825, 29);
             this.txtSearch.TabIndex = 7;
             // 
             // label2
@@ -208,10 +224,10 @@
             this.tabPageBuyerDetail.Controls.Add(this.label4);
             this.tabPageBuyerDetail.Controls.Add(this.txtBuyerId);
             this.tabPageBuyerDetail.Controls.Add(this.label3);
-            this.tabPageBuyerDetail.Location = new System.Drawing.Point(4, 30);
+            this.tabPageBuyerDetail.Location = new System.Drawing.Point(4, 24);
             this.tabPageBuyerDetail.Name = "tabPageBuyerDetail";
             this.tabPageBuyerDetail.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageBuyerDetail.Size = new System.Drawing.Size(1060, 436);
+            this.tabPageBuyerDetail.Size = new System.Drawing.Size(1093, 435);
             this.tabPageBuyerDetail.TabIndex = 1;
             this.tabPageBuyerDetail.Text = "Buyer detail";
             this.tabPageBuyerDetail.UseVisualStyleBackColor = true;
@@ -321,11 +337,16 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Buyer ID:";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // BuyerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1068, 533);
+            this.ClientSize = new System.Drawing.Size(1101, 526);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -371,5 +392,7 @@
         private Button btnCancel;
         private TextBox txtBuyerAdress;
         private Label label7;
+        private TextBox txtBuyerCount;
+        private ContextMenuStrip contextMenuStrip1;
     }
 }

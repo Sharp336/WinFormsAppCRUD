@@ -18,7 +18,7 @@ namespace WinFormsAppCRUD.Presenters
         private IBuyerRepository repository;
         private BindingSource buyersBindingSource;
         private IEnumerable<BuyerModel> buyerList;
-
+        private int BuyerCount;
         public BuyerPresenter(IBuyerView view, IBuyerRepository repository)
         {
             this.buyersBindingSource = new BindingSource();
@@ -40,6 +40,7 @@ namespace WinFormsAppCRUD.Presenters
         {
             buyerList = repository.GetAll();
             buyersBindingSource.DataSource = buyerList;
+            view.BuyerCount = repository.CountAll().ToString();
         }
 
         private void CancelAction(object? sender, EventArgs e)
@@ -110,8 +111,16 @@ namespace WinFormsAppCRUD.Presenters
         {
             bool emptyValue = string.IsNullOrWhiteSpace(this.view.SearchValue);
             if (emptyValue == false)
+            {
                 buyerList = repository.GetByValue(this.view.SearchValue);
-            else buyerList = repository.GetAll();
+                view.BuyerCount = repository.CountSpecific(this.view.SearchValue).ToString();
+            }
+            else 
+            { 
+                buyerList = repository.GetAll();
+                view.BuyerCount = repository.CountAll().ToString();
+            }
+
             buyersBindingSource.DataSource = buyerList;
         }
         private void DeleteSelectedBuyer(object? sender, EventArgs e)

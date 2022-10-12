@@ -66,32 +66,6 @@ namespace WinFormsAppCRUD._Repositories
             }
         }
 
-        public IEnumerable<BuyerModel> GetAll()
-        {
-            var buyerList = new List<BuyerModel>();
-            using (var connection = new SqlConnection(connectionString))
-            using (var command = new SqlCommand())
-            {
-                connection.Open();
-                command.Connection = connection;
-                command.CommandText = "Select *from Buyer order by ID_Buyer desc";
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        var buyerModel = new BuyerModel();
-                        buyerModel.ID = (int)reader[0];
-                        buyerModel.Login = reader[1].ToString();
-                        buyerModel.Password = reader[2].ToString();
-                        buyerModel.Phone_Number = reader[3].ToString();
-                        buyerModel.Adress = reader[4].ToString();
-                        buyerList.Add(buyerModel);
-                    }
-                }
-            }
-            return buyerList;
-        }
-
         //public IEnumerable<BuyerModel> GetAll()
         //{
         //    var buyerList = new List<BuyerModel>();
@@ -120,6 +94,32 @@ namespace WinFormsAppCRUD._Repositories
         //    getallttask.RunSynchronously();
         //    return buyerList;
         //}
+
+        public IEnumerable<BuyerModel> GetAll()
+        {
+            var buyerList = new List<BuyerModel>();
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "Select *from Buyer order by ID_Buyer desc";
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var buyerModel = new BuyerModel();
+                        buyerModel.ID = (int)reader[0];
+                        buyerModel.Login = reader[1].ToString();
+                        buyerModel.Password = reader[2].ToString();
+                        buyerModel.Phone_Number = reader[3].ToString();
+                        buyerModel.Adress = reader[4].ToString();
+                        buyerList.Add(buyerModel);
+                    }
+                }
+            }
+            return buyerList;
+        }
 
         public IEnumerable<BuyerModel> GetByValue(string value)
         {
@@ -151,6 +151,39 @@ namespace WinFormsAppCRUD._Repositories
                 }
             }
             return buyerList;
+        }
+
+        public int CountAll()
+        {
+            int buyerCount;
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "Select COUNT(*) from Buyer";
+                buyerCount = Convert.ToInt32(command.ExecuteScalar());
+            }
+            return buyerCount;
+        }
+
+        public int CountSpecific(string value)
+        {
+            int buyerCount;
+            int buyerID = Int32.TryParse(value, out _) ? Convert.ToInt32(value) : 0;
+            string buyerPhone = value;
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = @"Select COUNT(*) from Buyer
+                                        where ID_Buyer=@id or Buyer_Phone_Number like @phone+'%'";
+                command.Parameters.Add("@id", SqlDbType.Int).Value = buyerID;
+                command.Parameters.Add("@phone", SqlDbType.VarChar).Value = buyerPhone;
+                buyerCount = Convert.ToInt32(command.ExecuteScalar());
+            }
+            return buyerCount;
         }
     }
 }

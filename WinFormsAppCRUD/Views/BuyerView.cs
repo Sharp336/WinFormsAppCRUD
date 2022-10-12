@@ -84,6 +84,7 @@ namespace WinFormsAppCRUD.Views
         public string SearchValue { get => txtSearch.Text; set { txtSearch.Text = value; } }
         public bool IsEdit { get => isEdit; set {isEdit = value; } }
         public bool IsSuccessful { get => isSuccessful; set { isSuccessful = value; } }
+        public string BuyerCount { get => txtBuyerCount.Text; set { txtBuyerCount.Text = $"Всего покупателей:\n" + value; } }
         public string Message { get => message; set { message = value; } }
 
         public event EventHandler SearchEvent;

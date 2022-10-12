@@ -17,6 +17,7 @@ namespace WinFormsAppCRUD.Views
         string SearchValue { get; set; }
         bool IsEdit { get; set; }
         bool IsSuccessful { get; set; }
+        string BuyerCount { get; set; }
         string Message { get; set; }
 
         event EventHandler SearchEvent;

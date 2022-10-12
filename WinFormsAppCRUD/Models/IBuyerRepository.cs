@@ -13,5 +13,7 @@ namespace WinFormsAppCRUD.Models
         void Delete(int id);
         IEnumerable<BuyerModel> GetAll();
         IEnumerable<BuyerModel> GetByValue(string value);
+        int CountAll();
+        int CountSpecific(string value);
     }
 }
