@@ -34,16 +34,29 @@ namespace WinFormsAppCRUD._Repositories
         }
 
 
-        public void Delete(int id)
+        public int Delete(int id)
         {
+            string sqlExpression = "Buyer_Delete_Specific_Test";
             using (var connection = new SqlConnection(connectionString))
-            using (var command = new SqlCommand())
+            using (var command = new SqlCommand(sqlExpression, connection))
             {
                 connection.Open();
-                command.Connection = connection;
-                command.CommandText = "delete from Buyer where ID_Buyer=@id";
-                command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                command.CommandType = CommandType.StoredProcedure;
+                SqlParameter ID_Buyer = new SqlParameter
+                {
+                    ParameterName = "@ID_Buyer",
+                    Value = id
+                };
+                command.Parameters.Add(ID_Buyer);
+                SqlParameter Result = new SqlParameter
+                {
+                    ParameterName = "@Result",
+                    SqlDbType = SqlDbType.Int
+                };
+                Result.Direction = ParameterDirection.Output;
+                command.Parameters.Add(Result);
                 command.ExecuteNonQuery();
+                return (int)command.Parameters["@Result"].Value;
             }
         }
 

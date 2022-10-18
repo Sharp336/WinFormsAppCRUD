@@ -128,15 +128,28 @@ namespace WinFormsAppCRUD.Presenters
             try
             {
                 var buyer = (BuyerModel)buyersBindingSource.Current;
-                repository.Delete(buyer.ID);
-                view.IsSuccessful = true;
-                view.Message = "Buyer deleted successfully";
+                var resultcode = repository.Delete(buyer.ID);
+                switch (resultcode)
+                {
+                    case 1:
+                        view.IsSuccessful = true;
+                        view.Message = "Buyer deleted successfully";
+                        break;
+                    case 0:
+                        view.IsSuccessful = true;
+                        view.Message = "Could not find buyer to delete";
+                        break;
+                    case -1:
+                        view.IsSuccessful = false;
+                        view.Message = "Could not delete buyer";
+                        break;
+                }
                 LoadAllBuyerList();
             }
             catch (Exception ex)
             {
                 view.IsSuccessful = false;
-                view.Message = "An error ocurred, could not delete buyer";
+                view.Message = "An error ocurred, could not delete buyer" + '\n'+ ex;
             }
         }
     }

@@ -10,7 +10,7 @@ namespace WinFormsAppCRUD.Models
     {
         void Add(BuyerModel buyerModel);
         void Edit(BuyerModel buyerModel);
-        void Delete(int id);
+        int Delete(int id);
         IEnumerable<BuyerModel> GetAll();
         IEnumerable<BuyerModel> GetByValue(string value);
         int CountAll();
